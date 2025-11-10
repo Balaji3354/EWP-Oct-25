@@ -13,7 +13,10 @@
       background-color: #084e54;
       color: #333;
     }
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
     button {
       padding: 1rem 2rem;
       font-size: 1.2rem;
@@ -23,10 +26,12 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    button:hover { background-color: #882b70; }
+    button:hover {
+      background-color: #a83c90;
+    }
     .dark {
       background-color: #222222;
-      color: rgba(0, 128, 0, 0.644);
+      color: #f5f5f5;
     }
   </style>
 </head>
@@ -34,19 +39,20 @@
   <h1 id="welcome">👋 Hello there! I hope you are doing Good!</h1>
   <p id="greeting">Let's make your page come alive ✨</p>
   <button id="themeBtn">💡 ↔ 🌌 Toggle Dark Mode</button>
-  
+
   <!-- 📝 Quote of the Day -->
   <h2>🌟 Quote of the Day 🌟</h2>
   <p id="quote"></p>
+
   <!-- 🖱️ Click Counter -->
-  <h3>🖱️ Click Counter</h3>
+  <h2>🖱️ Click Counter</h2>
   <button id="countBtn">Click me!</button>
   <p>Clicks: <span id="count">0</span></p>
 
   <!-- 🎨 Color Changer -->
-  <h4>🎨 Background Color Changer</h4>
+  <h2>🎨 Background Color Changer</h2>
   <button id="colorBtn">Change Background Color</button>
-  
+
   <script>
     const btn = document.getElementById('themeBtn');
     const body = document.body;
@@ -64,35 +70,41 @@
     // Dynamic greeting
     const hour = new Date().getHours();
     let message;
-    if (hour < 12) message = "🌄 Good morning!";
-    else if (hour < 18) message = "☕😎 Good afternoon!";
-    else message = "🌇 Good evening!";
+    if (hour < 12) {
+      message = "🌄 Good morning!";
+    } else if (hour < 18) {
+      message = "☕😎 Good afternoon!";
+    } else {
+      message = "🌇 Good evening!";
+    }
     document.getElementById('greeting').textContent = message;
-     // 📝 Quote of the Day
-  const quotes = [
-    "Believe you can and you're halfway there.",
-    "Do something today that your future self will thank you for.",
-    "The best time for new beginnings is now.",
-    "Don’t watch the clock; do what it does. Keep going.",
-    "Success is not final, failure is not fatal: it is the courage to continue that counts."
+
+    // 📝 Quote of the Day
+    const quotes = [
+      "Believe you can and you're halfway there.",
+      "Do something today that your future self will thank you for.",
+      "The best time for new beginnings is now.",
+      "Don’t watch the clock; do what it does. Keep going.",
+      "Success is not final, failure is not fatal: it is the courage to continue that counts."
     ];
     const randomIndex = Math.floor(Math.random() * quotes.length);
     document.getElementById("quote").textContent = quotes[randomIndex];
-   
+
     // 🖱️ Click Counter
     let count = 0;
     const countDisplay = document.getElementById("count");
     document.getElementById("countBtn").addEventListener("click", () => {
-    count++;
-    countDisplay.textContent = count;
+      count++;
+      countDisplay.textContent = count;
     });
 
-  // 🎨 Background Color Changer
+    // 🎨 Background Color Changer
     document.getElementById("colorBtn").addEventListener("click", () => {
-    const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    document.body.style.backgroundColor = randomColor;
+      const randomColor = "#" + Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0");
+      document.body.style.backgroundColor = randomColor;
     });
-    
   </script>
 </body>
 </html>
