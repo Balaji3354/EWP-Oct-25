@@ -39,12 +39,12 @@
   <h2>🌟 Quote of the Day 🌟</h2>
   <p id="quote"></p>
   <!-- 🖱️ Click Counter -->
-  <h2>🖱️ Click Counter</h2>
+  <h3>🖱️ Click Counter</h3>
   <button id="countBtn">Click me!</button>
   <p>Clicks: <span id="count">0</span></p>
 
   <!-- 🎨 Color Changer -->
-  <h2>🎨 Background Color Changer</h2>
+  <h4>🎨 Background Color Changer</h4>
   <button id="colorBtn">Change Background Color</button>
   
   <script>
@@ -78,19 +78,21 @@
     ];
     const randomIndex = Math.floor(Math.random() * quotes.length);
     document.getElementById("quote").textContent = quotes[randomIndex];
+   
     // 🖱️ Click Counter
     let count = 0;
     const countDisplay = document.getElementById("count");
     document.getElementById("countBtn").addEventListener("click", () => {
     count++;
     countDisplay.textContent = count;
-  });
+    });
 
   // 🎨 Background Color Changer
     document.getElementById("colorBtn").addEventListener("click", () => {
     const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
     document.body.style.backgroundColor = randomColor;
-  });
+    });
+    
   </script>
 </body>
 </html>
