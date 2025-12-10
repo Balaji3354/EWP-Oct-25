@@ -3,147 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>✨ Interactive Page – Enhanced</title>
-
+  <title>🌈 My Interactive Page</title>
   <style>
     body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 2rem;
+      font-family: 'Poppins', Arial, Helvetica, sans-serif;
       text-align: center;
-      background: linear-gradient(135deg, #0a5c63, #093d48);
-      color: #ffffff;
-      transition: background 0.5s ease, color 0.4s ease;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      background-color: #084e54;
+      color: #333;
     }
-
-    h1, h2 {
-      animation: fadeIn 1s ease forwards;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 15px;
-      margin: 1.5rem auto;
-      width: 80%;
-      max-width: 500px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      animation: popIn 0.7s ease forwards;
-    }
-
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     button {
-      padding: 0.9rem 2rem;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #992e7d, #d94ba4);
-      color: #fff;
-      font-size: 1.1rem;
+      border-radius: 10px;
+      background-color: #882b70;
       cursor: pointer;
-      margin-top: 1rem;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      transition: background-color 0.3s ease;
     }
-
-    button:hover {
-      transform: scale(1.07);
-      box-shadow: 0 0 15px rgba(255,255,255,0.4);
-    }
-
-    /* Dark Mode */
+    button:hover { background-color: #a83c90; }
     .dark {
-      background: linear-gradient(135deg, #121212, #2a2a2a);
+      background-color: #222222;
       color: #f5f5f5;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
+
 <body>
+  <h1 id="welcome">👋 Hello there! I hope you are doing Good!</h1>
+  <p id="greeting">Let's make your page come alive ✨</p>
 
-  <h1 id="welcome">👋 Hello there! Welcome!</h1>
-  <p id="greeting" style="font-size: 1.3rem; margin-bottom: 1.5rem;"></p>
+  <button id="themeBtn">💡 ↔ 🌌 Toggle Dark Mode</button>
 
-  <button id="themeBtn">🌞 / 🌙 Toggle Dark Mode</button>
-
-  <!-- Quote -->
-  <div class="card">
-    <h2>🌟 Quote of the Day</h2>
-    <p id="quote" style="font-size: 1.1rem;"></p>
-  </div>
+  <!-- Quote of the Day -->
+  <h2>🌟 Quote of the Day 🌟</h2>
+  <p id="quote"></p>
 
   <!-- Click Counter -->
-  <div class="card">
-    <h2>🖱️ Click Counter</h2>
-    <button id="countBtn">Click me!</button>
-    <p style="margin-top: 10px;">Clicks: <span id="count">0</span></p>
-  </div>
+  <h2>🖱️ Click Counter</h2>
+  <button id="countBtn">Click me!</button>
+  <p>Clicks: <span id="count">0</span></p>
 
   <!-- Background Color Changer -->
-  <div class="card">
-    <h2>🎨 Background Color Changer</h2>
-    <button id="colorBtn">Change Background Color</button>
-  </div>
+  <h2>🎨 Background Color Changer</h2>
+  <button id="colorBtn">Change Background Color</button>
 
   <script>
-    // Dark Mode Toggle
-    document.getElementById("themeBtn").addEventListener("click", () => {
-      document.body.classList.toggle("dark");
+    // Theme toggle
+    const btn = document.getElementById('themeBtn');
+    const body = document.body;
+
+    btn.addEventListener('click', () => {
+      body.classList.toggle('dark');
     });
 
-    // Ask for Visitor Name
-    const userName = prompt("May I know your good name?");
-    if (userName) {
-      document.getElementById("welcome").textContent = `Welcome, ${userName}! 🎉`;
+    // Ask for visitor's name
+    const name = prompt("May I know your Good name?");
+    if (name) {
+      document.getElementById('welcome').textContent = `Welcome, ${name}! 🎉`;
     }
 
-    // Time Greeting
+    // Dynamic greeting
     const hour = new Date().getHours();
-    document.getElementById("greeting").textContent =
-      hour < 12 ? "🌄 Good Morning!" :
-      hour < 18 ? "☕😎 Good Afternoon!" :
-                  "🌇 Good Evening!";
+    let message;
+    if (hour < 12) message = "🌄 Good morning!";
+    else if (hour < 18) message = "☕😎 Good afternoon!";
+    else message = "🌇 Good evening!";
+    document.getElementById('greeting').textContent = message;
 
     // Quote of the Day
     const quotes = [
       "Believe you can and you're halfway there.",
       "Do something today that your future self will thank you for.",
-      "Great things never come from comfort zones.",
-      "Happiness is not by chance, but by choice.",
-      "Dream big, work hard, stay focused."
+      "The best time for new beginnings is now.",
+      "Don’t watch the clock; do what it does. Keep going.",
+      "Success is not final, failure is not fatal: it is the courage to continue that counts."
     ];
-    document.getElementById("quote").textContent =
-      quotes[Math.floor(Math.random() * quotes.length)];
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").textContent = quotes[randomIndex];
 
-    // Function to generate a random color
-    function randomColor() {
-      return "#" + Math.floor(Math.random() * 16777215)
-        .toString(16).padStart(6, "0");
-    }
-
-    // Click Counter + Background Change
+    // 🖱️ Click Counter (now changes background!)
     let count = 0;
+    const countDisplay = document.getElementById("count");
+
     document.getElementById("countBtn").addEventListener("click", () => {
-      document.getElementById("count").textContent = ++count;
+      count++;
+      countDisplay.textContent = count;
 
-      // Change the background color on every click
-      document.body.style.background = randomColor();
+      // Background color change
+      const randomColor = "#" + Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0");
+
+      document.body.style.backgroundColor = randomColor;
     });
 
-    // Background Color Changer Button
+    // 🎨 Background Color Changer
     document.getElementById("colorBtn").addEventListener("click", () => {
-      document.body.style.background = randomColor();
+      const randomColor = "#" + Math.floor(Math.random() * 16777215)
+        .toString(16)
+        .padStart(6, "0");
+      document.body.style.backgroundColor = randomColor;
     });
-
   </script>
-
 </body>
 </html>
