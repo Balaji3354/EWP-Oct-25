@@ -107,9 +107,7 @@
 
     // Time Greeting
     const hour = new Date().getHours();
-    const greetingEl = document.getElementById("greeting");
-
-    greetingEl.textContent =
+    document.getElementById("greeting").textContent =
       hour < 12 ? "🌄 Good Morning!" :
       hour < 18 ? "☕😎 Good Afternoon!" :
                   "🌇 Good Evening!";
@@ -122,22 +120,29 @@
       "Happiness is not by chance, but by choice.",
       "Dream big, work hard, stay focused."
     ];
-
     document.getElementById("quote").textContent =
       quotes[Math.floor(Math.random() * quotes.length)];
 
-    // Click Counter
+    // Function to generate a random color
+    function randomColor() {
+      return "#" + Math.floor(Math.random() * 16777215)
+        .toString(16).padStart(6, "0");
+    }
+
+    // Click Counter + Background Change
     let count = 0;
     document.getElementById("countBtn").addEventListener("click", () => {
       document.getElementById("count").textContent = ++count;
+
+      // Change the background color on every click
+      document.body.style.background = randomColor();
     });
 
-    // Background Color Changer
+    // Background Color Changer Button
     document.getElementById("colorBtn").addEventListener("click", () => {
-      const randomColor = "#" + Math.floor(Math.random() * 16777215)
-        .toString(16).padStart(6, "0");
-      document.body.style.background = randomColor;
+      document.body.style.background = randomColor();
     });
+
   </script>
 
 </body>
